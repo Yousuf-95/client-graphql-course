@@ -7,8 +7,8 @@ export default function Post({
   date,
   user,
   published,
-  id,
-  isMyProfile,
+  // id,
+  // isMyProfile,
 }) {
   const formatedDate = new Date(Number(date));
   return (
@@ -16,7 +16,7 @@ export default function Post({
       className="Post"
       style={published === false ? { backgroundColor: "hotpink" } : {}}
     >
-      {isMyProfile && published === false && (
+      {/* {isMyProfile && published === false && (
         <p className="Post__publish" onClick={() => {}}>
           publish
         </p>
@@ -25,11 +25,11 @@ export default function Post({
         <p className="Post__publish" onClick={() => {}}>
           unpublish
         </p>
-      )}
+      )} */}
       <div className="Post__header-container">
         <h2>{title}</h2>
         <h4>
-          Created At {`${formatedDate}`.split(" ").splice(0, 3).join(" ")} by{" "}
+          Created At {`${formatedDate}`.split(" ").splice(0, 4).join(" ")} by{" "}
           {user}
         </h4>
       </div>
