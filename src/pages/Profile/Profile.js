@@ -5,14 +5,16 @@ import Post from "../../components/Post/Post";
 import { gql, useQuery } from "@apollo/client";
 
 const GET_PROFILE = gql`
-  query GetProfile($userId: ID!){
-    profile(userId: $userId) {
+  query GetProfile($email: String!){
+    profile(email: $email) {
       bio
+      isMyProfile
       user {
         name
         posts {
           title
           content
+          createdAt
         }
       }
     }
@@ -20,15 +22,16 @@ const GET_PROFILE = gql`
 `;
 
 export default function Profile() {
-  const { id } = useParams();
+  const { email } = useParams();
 
   const { data, error, loading } = useQuery(GET_PROFILE, {
     variables: {
-      userId: id
+      email: email
     }
   });
 
   if(error) {
+    console.log(error);
     return <div>Error Page</div>
   }
 
@@ -51,11 +54,11 @@ export default function Profile() {
           <h1>{profile.user.name}</h1>
           <p>{profile.bio}</p>
         </div>
-        <div>{"profile" ? <AddPostModal /> : null}</div>
+        <div>{profile.isMyProfile ? <AddPostModal /> : null}</div>
       </div>
       <div>
-        {profile.user.posts.mapt((post) => {
-          return <Post title={post.title} content={post.content}/>
+        {profile.user.posts.map((post, index) => {
+          return <Post key={index} title={post.title} content={post.content} date={post.createdAt} />
         })}
       </div>
     </div>

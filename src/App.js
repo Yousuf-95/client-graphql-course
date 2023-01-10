@@ -13,7 +13,7 @@ function App() {
         <Route strict exact path="/posts" component={Posts} />
         <Route strict exact path="/signup" component={Signup} />
         <Route strict exact path="/signin" component={Signin} />
-        <Route strict exact path="/profile/:id" component={Profile} />
+        <Route strict exact path="/profile/:email" component={Profile} />
       </Switch>
     </div>
   );
