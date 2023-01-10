@@ -12,9 +12,11 @@ const GET_PROFILE = gql`
       user {
         name
         posts {
+          id
           title
           content
           createdAt
+          publishStatus
         }
       }
     }
@@ -40,6 +42,7 @@ export default function Profile() {
   }
 
   const {profile} = data;
+  console.log(data);
 
   return (
     <div>
@@ -58,7 +61,16 @@ export default function Profile() {
       </div>
       <div>
         {profile.user.posts.map((post, index) => {
-          return <Post key={index} title={post.title} content={post.content} date={post.createdAt} user={profile.user} />
+          return <Post 
+          key={index}
+          id={post.id}
+          title={post.title} 
+          content={post.content} 
+          date={post.createdAt} 
+          user={profile.user} 
+          published={post.publishStatus}
+          isMyProfile={profile.isMyProfile}
+          />
         })}
       </div>
     </div>
