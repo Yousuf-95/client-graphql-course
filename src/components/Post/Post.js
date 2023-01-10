@@ -30,7 +30,7 @@ export default function Post({
         <h2>{title}</h2>
         <h4>
           Created At {`${formatedDate}`.split(" ").splice(0, 4).join(" ")} by{" "}
-          {user}
+          {user.name}
         </h4>
       </div>
       <p>{content}</p>

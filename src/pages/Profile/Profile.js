@@ -58,7 +58,7 @@ export default function Profile() {
       </div>
       <div>
         {profile.user.posts.map((post, index) => {
-          return <Post key={index} title={post.title} content={post.content} date={post.createdAt} />
+          return <Post key={index} title={post.title} content={post.content} date={post.createdAt} user={profile.user} />
         })}
       </div>
     </div>
