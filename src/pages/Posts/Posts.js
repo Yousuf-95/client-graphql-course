@@ -1,6 +1,7 @@
 import React from "react";
 import Post from "../../components/Post/Post";
 import { gql, useQuery } from "@apollo/client";
+import Error from "../../components/Error/Error";
 
 const GET_POSTS = gql`
   query {
@@ -21,11 +22,12 @@ export default function Posts() {
   const {data, error, loading} = useQuery(GET_POSTS);
 
   if(error) {
-    return <div>Error in getting data</div>
+    return <Error errorMessage={error.message}/>
   }
-
+  else {
+    
   if(loading) {
-    <div>Loading</div>
+     return <div>Loading</div>
   }
 
   const { posts } = data;
@@ -35,4 +37,6 @@ export default function Posts() {
       return <Post key={post.id} title={post.title} content={post.content} date={post.createdAt} id={post.id} user={post.user.name} />
     })}
   </div>;
+
+  }
 }
