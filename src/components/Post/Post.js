@@ -42,7 +42,7 @@ export default function Post({ title, content, date, user, published, id, isMyPr
     return (
       <div
         className="Post"
-        style={published === false ? { backgroundColor: "hotpink" } : {}}
+        style={published === false ? { backgroundColor: "rgb(216, 224, 231)" } : {}}
       >
         {isMyProfile && published === false && (
           <p className="Post__publish" onClick={() => {
@@ -52,7 +52,7 @@ export default function Post({ title, content, date, user, published, id, isMyPr
               }
             });
           }}>
-            publish
+            Publish
           </p>
         )}
         {isMyProfile && published === true && (
@@ -63,7 +63,7 @@ export default function Post({ title, content, date, user, published, id, isMyPr
               }
             });
           }}>
-            unpublish
+            Unpublish
           </p>
         )}
         <div className="Post__header-container">
