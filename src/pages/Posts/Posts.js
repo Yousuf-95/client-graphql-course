@@ -2,6 +2,7 @@ import React from "react";
 import Post from "../../components/Post/Post";
 import { gql, useQuery } from "@apollo/client";
 import Error from "../../components/Error/Error";
+import "./posts.css";
 
 const GET_POSTS = gql`
   query {
@@ -32,7 +33,7 @@ export default function Posts() {
 
   const { posts } = data;
 
-  return <div>
+  return <div className="posts">
     {posts.map((post) => {
       return <Post key={post.id} title={post.title} content={post.content} date={post.createdAt} id={post.id} user={post.user.name} />
     })}
