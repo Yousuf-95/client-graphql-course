@@ -11,6 +11,7 @@ const GET_POSTS = gql`
       title
       content
       createdAt
+      publishStatus
       user {
         name
       }
@@ -35,7 +36,7 @@ export default function Posts() {
 
   return <div className="posts">
     {posts.map((post) => {
-      return <Post key={post.id} title={post.title} content={post.content} date={post.createdAt} id={post.id} user={post.user.name} />
+      return <Post key={post.id} title={post.title} content={post.content} date={post.createdAt} id={post.id} user={post.user.name} published={post.publishStatus}/>
     })}
   </div>;
 
