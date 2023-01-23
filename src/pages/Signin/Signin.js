@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { gql, useMutation} from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
+import './signin.css';
 
 import { Form } from "react-bootstrap";
 import Button from "@restart/ui/esm/Button";
@@ -19,8 +20,8 @@ export default function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const [signin, {data}] = useMutation(SIGNIN);
+
+  const [signin, { data }] = useMutation(SIGNIN);
 
   const handleClick = () => {
     signin({
@@ -36,19 +37,20 @@ export default function Signin() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if(data) {
-      if(data.signin.userErrors.length) {
+    if (data) {
+      if (data.signin.userErrors.length) {
         setError(data.signin.userErrors[0].message);
       }
-      if(data.signin.token) {
+      if (data.signin.token) {
         localStorage.setItem("token", data.signin.token);
       }
     }
   }, [data]);
 
   return (
-    <div>
-      <Form>
+    <div className="form-container">
+      <Form className="signin-form">
+        {error && <p className="bg-secondary rounded text-white p-1 text-center">{error}</p>}
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -68,8 +70,7 @@ export default function Signin() {
           />
         </Form.Group>
 
-        {error && <p>{error}</p>}
-        <Button onClick={handleClick}>Signin</Button>
+        <Button className="mt-3 p-1 rounded" onClick={handleClick}>Signin</Button>
       </Form>
     </div>
   );
