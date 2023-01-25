@@ -1,0 +1,13 @@
+.form-container {
+    height: 100%;
+}
+
+.signin-form {
+    /* padding-top: 25vh; */
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
