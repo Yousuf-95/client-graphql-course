@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import AddPostModal from "../../components/AddPostModal/AddPostModal";
 import Post from "../../components/Post/Post";
 import { gql, useQuery } from "@apollo/client";
+import "./profile.css";
 
 const GET_PROFILE = gql`
   query GetProfile($email: String!){
@@ -45,15 +46,9 @@ export default function Profile() {
   console.log(data);
 
   return (
-    <div>
-      <div
-        style={{
-          marginBottom: "2rem",
-          display: "flex ",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
+    <div className="profile">
+      <div className="userDetails">
+        <div >
           <h1>{profile.user.name}</h1>
           <p>{profile.bio}</p>
         </div>
