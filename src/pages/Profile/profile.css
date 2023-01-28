@@ -1,0 +1,18 @@
+.profile {
+    padding-top: 5rem;
+}
+
+.profile .userDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto 0 auto;
+    border: 1px solid rgb(154, 152, 152);
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+}
+
+.profile .userDetails:hover {
+    border-color: black;
+}
