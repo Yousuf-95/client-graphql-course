@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { Navigate } from 'react-router-dom';
 import './signin.css';
 
 import { Form } from "react-bootstrap";
@@ -43,6 +44,7 @@ export default function Signin() {
       }
       if (data.signin.token) {
         localStorage.setItem("token", data.signin.token);
+        <Navigate to="/posts" replace={true} />
       }
     }
   }, [data]);
