@@ -17,7 +17,7 @@ function NavigationBar() {
                         <Nav.Link href="/posts">Posts</Nav.Link>
                         {authState.isAuthenticated === false && <Nav.Link href="/signin">Sign In</Nav.Link>}
                         {authState.isAuthenticated === false && <Nav.Link href="/signup">Sign Up</Nav.Link>}
-                        
+                        {authState.isAuthenticated === true && <Nav.Link href="/profile">Sign Up</Nav.Link>}
                     </Nav>
                 </Container>
             </Navbar>
