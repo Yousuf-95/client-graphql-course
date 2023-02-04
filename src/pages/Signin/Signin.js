@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './signin.css';
 
 import { Form } from "react-bootstrap";
@@ -21,6 +21,7 @@ export default function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [signin, { data }] = useMutation(SIGNIN);
 
@@ -44,36 +45,39 @@ export default function Signin() {
       }
       if (data.signin.token) {
         localStorage.setItem("token", data.signin.token);
-        <Navigate to="/posts" replace={true} />
+        setIsLoggedIn(true);
       }
     }
   }, [data]);
 
   return (
-    <div className="form-container">
-      <Form className="signin-form">
-        {error && <p className="bg-secondary rounded text-white p-1 text-center">{error}</p>}
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder=""
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+    <>
+      {isLoggedIn && <Redirect to="/posts" replace="true" />}
+      <div className="form-container">
+        <Form className="signin-form">
+          {error && <p className="bg-secondary rounded text-white p-1 text-center">{error}</p>}
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder=""
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
 
-        <Button className="mt-3 p-1 rounded" onClick={handleClick}>Signin</Button>
-      </Form>
-    </div>
+          <Button className="mt-3 p-1 rounded" onClick={handleClick}>Signin</Button>
+        </Form>
+      </div>
+    </>
   );
 }
